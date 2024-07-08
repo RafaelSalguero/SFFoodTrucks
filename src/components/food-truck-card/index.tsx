@@ -3,7 +3,17 @@ import style from "./index.module.css";
 import { InfoLabel } from "./info-label";
 import { FavoriteButton } from "../favorite";
 interface Props {
-  value: FoodTruck;
+  value: FoodTruck & { distance?: number };
+}
+
+function formatDistanceInMeters(distance: number) {
+  return distance < 10
+    ? `${distance.toFixed(0)}m`
+    : distance < 500
+    ? `${Math.round(distance / 10) * 10}m`
+    : distance < 1000
+    ? `${Math.round(distance / 100) / 10}km`
+    : `${(distance / 1000).toFixed(1)}km`;
 }
 
 export function FoodTruckCard({ value }: Props) {
@@ -12,6 +22,13 @@ export function FoodTruckCard({ value }: Props) {
       <span className={style.title}>{value.Applicant}</span>
       <div className={style.content}>
         <InfoLabel icon={"📌"} info={value.Address} title="Address" />
+        {value.distance && (
+          <InfoLabel
+            icon={"📍"}
+            info={formatDistanceInMeters(value.distance)}
+            title="Distance"
+          />
+        )}
         <InfoLabel
           title="Facility type"
           icon={
