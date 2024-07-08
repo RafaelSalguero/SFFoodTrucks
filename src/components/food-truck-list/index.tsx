@@ -1,20 +1,38 @@
-import { getNearFoodTrucks } from "@/data/food-trucks";
-import { delay } from "@/data/utils";
+import { FoodTruckQuery, queryFoodTrucks } from "@/data/food-trucks";
+import { delay, latLngDistance, sanFranciscoCoords } from "@/data/utils";
 import { cache } from "react";
 import { FoodTruckCard } from "../food-truck-card";
 import style from "./index.module.css";
-const getFoodTrucks = cache(async () => {
+import { Coords } from "@/data/types";
+
+export const getFoodTrucks = cache(async (query: FoodTruckQuery) => {
   // simnulate a loading time:
   await delay(100 + Math.random() * 200);
-  return await getNearFoodTrucks([37.7577607, -122.4787994], 10000);
+  return await queryFoodTrucks(query);
 });
 
-export async function FoodTruckList() {
-  const items = await getFoodTrucks();
+interface Props {
+  search?: string;
+}
+
+export async function FoodTruckList({ search }: Props) {
+  const items = await getFoodTrucks({ search });
+
+  const userCoords = sanFranciscoCoords;
+
+  const itemsWithDistance = items
+    .map((x) => ({
+      ...x,
+      distance: latLngDistance(userCoords, [
+        Number.parseFloat(x.Latitude),
+        Number.parseFloat(x.Longitude),
+      ]),
+    }))
+    .toSorted((a, b) => a.distance - b.distance);
   return (
     <div className={style.container}>
       <div className={style.list}>
-        {items.map((item) => (
+        {itemsWithDistance.map((item) => (
           <FoodTruckCard key={item.locationid} value={item} />
         ))}
       </div>

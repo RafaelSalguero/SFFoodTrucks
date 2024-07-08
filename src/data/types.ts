@@ -1,3 +1,4 @@
+export type FacilityType = "Truck" | "Push Cart";
 export interface FoodTruck {
     /** Unique identifier for the food truck location, e.g., "735318" */
     locationid: string;
@@ -6,7 +7,7 @@ export interface FoodTruck {
     Applicant: string;
 
     /** Type of food service facility */
-    FacilityType: "Push Cart" | "Truck" | "";
+    FacilityType: FacilityType | "";
 
     /** Street segment identifier, e.g., "30727000" */
     cnn: string;

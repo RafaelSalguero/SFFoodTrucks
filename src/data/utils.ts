@@ -1,5 +1,7 @@
 import { Coords } from "./types";
 
+export const sanFranciscoCoords: Coords = [37.7614742, -122.4140746] as const;
+
 /**Haversine formula calculates distance between 2 points on a sphere,
  * is a good enough aproximation for small distances, since the earth is not a perfect sphere
  */

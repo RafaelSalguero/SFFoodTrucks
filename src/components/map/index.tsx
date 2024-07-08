@@ -1,5 +1,6 @@
 "use client";
 import { Coords } from "@/data/types";
+import { sanFranciscoCoords } from "@/data/utils";
 import { LatLngTuple } from "leaflet";
 import dynamic from "next/dynamic";
 import React from "react";
@@ -29,19 +30,29 @@ const Popup = dynamic(() => import("react-leaflet").then((mod) => mod.Popup), {
   ssr: false,
 });
 
-export const sanFranciscoCoords: Coords = [37.7577607, -122.4787994] as const;
+interface Props {
+  markers?: MarkerProps[];
+}
+
+export interface MarkerProps {
+  id: string;
+  coords: Coords;
+  name: string;
+}
 
 //  leaflet doesn't supports SSR, so we need to use dynamic import
-export function Map() {
+export function Map({ markers }: Props) {
   return (
     <MapContainer center={sanFranciscoCoords as any as LatLngTuple} zoom={13}>
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      <Marker position={[51.505, -0.09]}>
-        <Popup>This is a popup</Popup>
-      </Marker>
+      {markers?.map((x) => (
+        <Marker key={x.id} position={x.coords as any}>
+          <Popup>{x.name}</Popup>
+        </Marker>
+      ))}
     </MapContainer>
   );
 }

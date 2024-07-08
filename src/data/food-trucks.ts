@@ -1,6 +1,6 @@
 import fs from "fs";
 import { parse } from "csv-parse"
-import { Coords, FoodTruck } from "./types";
+import { Coords, FacilityType, FoodTruck } from "./types";
 import { latLngDistance } from "./utils";
 
 /** 
@@ -17,15 +17,40 @@ export async function* streamFoodTrucksData() {
         yield item as FoodTruck;
     }
 }
+export interface FoodTruckQuery {
+    location?: {
+        coords: Coords;
+        distance: number;
+    }
+    foodItems?: string[];
+    search?: string;
+}
 
 /** Gets an array of near food trucks */
-export async function getNearFoodTrucks(coords: Coords, distance: number) {
+export async function queryFoodTrucks(query: FoodTruckQuery) {
     const foodTrucks = [];
     for await (const truck of streamFoodTrucksData()) {
-        const truckCoords = [Number.parseFloat(truck.Latitude), Number.parseFloat(truck.Longitude)] as const;
-        if (latLngDistance(coords, truckCoords) <= distance) {
-            foodTrucks.push(truck);
+        if (query.location) {
+            const truckCoords = [Number.parseFloat(truck.Latitude), Number.parseFloat(truck.Longitude)] as const;
+            if (latLngDistance(query.location.coords, truckCoords) > query.location.distance) {
+                // Filter out by distance
+                continue;
+            }
         }
+
+        if (query.foodItems && query.foodItems.length > 0) {
+            if (!query.foodItems.some((foodItem) => truck.FoodItems.toUpperCase().includes(foodItem.toUpperCase()))) {
+                // Filter by foot items
+                continue;
+            }
+        }
+
+        const searchText = truck.Applicant + truck.FoodItems + truck.Address;
+        if (query.search && !searchText.toUpperCase().includes(query.search.toUpperCase())) {
+            // Filter by search text
+            continue;
+        }
+        foodTrucks.push(truck);
     }
     return foodTrucks;
 
