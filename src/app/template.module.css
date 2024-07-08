@@ -1,0 +1,24 @@
+.template {
+    display: grid;
+    grid-template-rows: 50px minmax(0, 1fr);
+}
+
+.header {
+    background-color: var(--slate-2);
+    display: grid;
+    grid-template-columns: 300px minmax(0, 1fr);
+}
+
+.iconContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--slate-3);
+
+}
+
+.title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -1,0 +1,22 @@
+
+.icon {
+    display: flex;
+    border-radius: 20px;
+    background-color: var(--sky-3);
+    color: white;
+
+    width: 100px;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    padding: 10px 20px;
+
+    transform: rotate(5deg) scale(0.8);
+
+    font-size: 20px;
+}
+
+.sf {
+    font-weight: bold;
+}
+

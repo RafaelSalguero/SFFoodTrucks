@@ -1,0 +1,13 @@
+.button {
+    border: 1px solid #ccc;
+    border-radius: var(--sm);
+    color: #333;
+    cursor: pointer;
+    padding: 5px 10px;
+    color: var(--red-2);
+}
+
+.pressed {
+    background-color: var(--red-1);
+    color: white;
+}

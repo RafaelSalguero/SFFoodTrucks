@@ -1,0 +1,29 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+    border-radius: var(--md);
+
+    background-color: var(--slate-0);
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    padding: var(--md);
+    gap: var(--sm);
+}
+
+.title {
+    font-weight: bold;
+    color: white;
+
+    border-radius: var(--md) var(--md) 0 0;
+    background-color: var(--sky-3);
+
+    padding: var(--md);
+}
+
+.content {
+
+}
