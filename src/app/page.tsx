@@ -1,19 +1,24 @@
 import Image from "next/image";
 import styles from "./page.module.css";
-import { Input, Map, FoodTruckList, Spinner } from "@/components";
+import { FoodTruckList, Spinner, SearchParamInput } from "@/components";
 import { Suspense } from "react";
+import { FoodTruckMap } from "@/components/food-truck-map";
 
-export default function Home() {
+export default function Home({
+  searchParams: { q },
+}: {
+  searchParams: { q?: string };
+}) {
   return (
     <main className={styles.main}>
       <div className={styles.sidebar}>
-        <Input className={styles.search} placeholder="Search for food trucks" />
+        <SearchParamInput className={styles.search} />
         <Suspense fallback={<Spinner />}>
-          <FoodTruckList />
+          <FoodTruckList search={q} />
         </Suspense>
       </div>
       <div className={styles.content}>
-        <Map />
+        <FoodTruckMap search={q} />
       </div>
     </main>
   );
