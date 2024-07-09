@@ -22,3 +22,19 @@ to search food trucks near in San Francisco
 ## Screenshot
 
 ![Screenshot](screenshot.png)
+
+# How to run
+
+Install packages:
+
+```
+npm install
+```
+
+Run the web app:
+
+```
+npm run dev
+```
+
+Open http://localhost:3000/
