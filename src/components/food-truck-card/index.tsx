@@ -18,6 +18,7 @@ function formatDistanceInMeters(distance: number) {
     : `${(distance / 1000).toFixed(1)}km`;
 }
 
+/** A food truck card which is shown in the food truck list */
 export function FoodTruckCard({ value, search }: Props) {
   return (
     <div className={style.card}>

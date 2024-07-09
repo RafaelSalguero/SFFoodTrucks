@@ -7,6 +7,8 @@ interface Props {
   favKey: string;
   itemId: string;
 }
+
+/** A favorite button that can be toggled on or off, the state is stored in the localstorage in the given favKey */
 export function FavoriteButton({ favKey, itemId }: Props) {
   const { isFav, toggle } = useFavorite({ favKey, itemId });
   return (

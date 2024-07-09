@@ -41,6 +41,8 @@ export interface MarkerProps {
 }
 
 //  leaflet doesn't supports SSR, so we need to use dynamic import
+
+/** Leaflet map wrapper */
 export function Map({ markers }: Props) {
   return (
     <MapContainer center={sanFranciscoCoords as any as LatLngTuple} zoom={13}>

@@ -11,6 +11,7 @@ interface Props
   onChange?: (value: string) => void;
 }
 
+/** A stylized input */
 export function Input({ onChange, ...props }: Props) {
   const handleOnChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {

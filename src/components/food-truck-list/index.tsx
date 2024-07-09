@@ -15,9 +15,11 @@ interface Props {
   search?: string;
 }
 
+/** Queries and renders the food trucks, ordering them by distance */
 export async function FoodTruckList({ search }: Props) {
   const items = await getFoodTrucks({ search });
 
+  // For now we can't select another location, so the user location is fixed to this one:
   const userCoords = sanFranciscoCoords;
 
   const itemsWithDistance = items

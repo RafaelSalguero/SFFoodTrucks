@@ -5,6 +5,7 @@ interface Props {
   search?: string;
 }
 
+/** Queries the food trucks and renders them in the map */
 export async function FoodTruckMap({ search }: Props) {
   const items = await getFoodTrucks({ search });
 
