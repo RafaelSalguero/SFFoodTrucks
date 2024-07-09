@@ -1,36 +1,24 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# SF food trucks
 
-## Getting Started
+A small web application written in NextJS that allows the user
+to search food trucks near in San Francisco
 
-First, run the development server:
+## Some features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Food truck querying uses file streaming, allowing large files to be processed without fully loading them in memory
+- Open Leaflet map is used to render the food trucks positons
+- React Suspense is used to partially render the page while data is still fetching
+- The user can mark certain places as favorites, this gets stored in the local storage
+- The search highlights the matched text as a visual help
+- The search is implemented using URL search params so it is persisted across reloads
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Next steps
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Allow the user to select its own position (for now it is fixed)
+- Load more food truck places across the world using a database such as PostgreSQL and geohashes for high performance search
+- Allow the user to login and save its own favorites across computers
+- Use google routing APIs to show the user a more accurate travel distance, not just euclidean distance
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Screenshot
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+![Screenshot](screenshot.png)
