@@ -15,7 +15,6 @@
 }
 
 .title {
-    font-weight: bold;
     color: white;
 
     border-radius: var(--md) var(--md) 0 0;

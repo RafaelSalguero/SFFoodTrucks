@@ -2,8 +2,10 @@ import { FoodTruck } from "@/data/types";
 import style from "./index.module.css";
 import { InfoLabel } from "./info-label";
 import { FavoriteButton } from "../favorite";
+import { SearchSpan } from "../search-span";
 interface Props {
   value: FoodTruck & { distance?: number };
+  search?: string;
 }
 
 function formatDistanceInMeters(distance: number) {
@@ -16,10 +18,14 @@ function formatDistanceInMeters(distance: number) {
     : `${(distance / 1000).toFixed(1)}km`;
 }
 
-export function FoodTruckCard({ value }: Props) {
+export function FoodTruckCard({ value, search }: Props) {
   return (
     <div className={style.card}>
-      <span className={style.title}>{value.Applicant}</span>
+      <SearchSpan
+        className={style.title}
+        text={value.Applicant}
+        search={search}
+      />
       <div className={style.content}>
         <InfoLabel icon={"📌"} info={value.Address} title="Address" />
         {value.distance && (
@@ -41,7 +47,12 @@ export function FoodTruckCard({ value }: Props) {
           info={value.FacilityType}
         />
 
-        <InfoLabel icon={"🍔"} info={value.FoodItems} title="Food Items" />
+        <InfoLabel
+          icon={"🍔"}
+          info={value.FoodItems}
+          title="Food Items"
+          search={search}
+        />
         <InfoLabel
           icon={"⏰"}
           info={value.dayshours}

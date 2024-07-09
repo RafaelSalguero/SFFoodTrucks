@@ -33,7 +33,7 @@ export async function FoodTruckList({ search }: Props) {
     <div className={style.container}>
       <div className={style.list}>
         {itemsWithDistance.map((item) => (
-          <FoodTruckCard key={item.locationid} value={item} />
+          <FoodTruckCard key={item.locationid} value={item} search={search} />
         ))}
       </div>
     </div>

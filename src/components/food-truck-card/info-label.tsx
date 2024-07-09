@@ -1,14 +1,13 @@
+import { SearchSpan } from "../search-span";
+
 interface Props {
   icon?: React.ReactNode;
   info?: React.ReactNode;
   title: string;
+  search?: string;
 }
 
-export function InfoLabel({ icon, info, title }: Props) {
+export function InfoLabel({ icon, info, title, search }: Props) {
   if (!info) return null;
-  return (
-    <span title={title}>
-      {icon} {info}
-    </span>
-  );
+  return <SearchSpan title={title} search={search} text={`${icon} ${info}`} />;
 }
