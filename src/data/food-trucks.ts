@@ -3,6 +3,7 @@ import { parse } from "csv-parse"
 import { Coords, FacilityType, FoodTruck } from "./types";
 import { latLngDistance } from "./utils";
 
+
 /** 
  * Read all the food truck data and returns a stream of FoodTruck items.
  * Streaming allows the processing of large files without needing to load the whole file into memory.
@@ -13,7 +14,7 @@ export async function* streamFoodTrucksData() {
         columns: true
     })
 
-    for await (const item of fs.createReadStream("./src/data/food-trucks.csv").pipe(parser)) {
+    for await (const item of fs.createReadStream(process.cwd() + "/food-trucks.csv").pipe(parser)) {
         yield item as FoodTruck;
     }
 }

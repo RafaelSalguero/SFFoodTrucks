@@ -14,6 +14,7 @@ to search food trucks near in San Francisco
 
 ## Next steps
 
+- Collapse the sidebar on small screen sizes to make it responsive
 - Allow the user to select its own position (for now it is fixed)
 - Load more food truck places across the world using a database such as PostgreSQL and geohashes for high performance search
 - Allow the user to login and save its own favorites across computers
