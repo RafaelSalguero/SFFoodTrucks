@@ -1,5 +1,11 @@
 # SF food trucks
 
+## Test link
+
+You can test this app in https://sf-food-trucks.vercel.app/
+
+## Description
+
 A small web application written in NextJS that allows the user
 to search food trucks near in San Francisco
 
